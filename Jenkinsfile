@@ -8,6 +8,11 @@ pipeline {
                     s3Upload(pathStyleAccessEnabled: true, payloadSigningEnabled: true, file:'index.html', bucket:'static-jenkins-pipeline-mb')
                 }
             }
+        },
+        stage('Lint HTML') {
+            steps {
+                sh 'tidy -q -e *.html'
+            }
         }
     }
 }
